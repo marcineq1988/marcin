@@ -1,0 +1,47 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+	baseName = 'gs-accessing-data-rest'
+	version = '0.1.0'
+}
+
+repositories {
+	mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-data-rest")
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+	compile("com.h2database:h2")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+
+	compile('org.springframework.boot:spring-boot-starter-web')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile group: 'jstl', name: 'jstl', version: '1.2'
+
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-devtools')
+	compile('javax.servlet:jstl')
+	compile group: 'taglibs', name: 'standard', version: '1.1.2'
+	compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+	compile 'org.springframework.boot:spring-boot-starter-web:1.5.8.RELEASE'
+	compile 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.1'
+	compile 'javax.servlet:jstl:1.2'
+}
