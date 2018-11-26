@@ -44,4 +44,6 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-web:1.5.8.RELEASE'
 	compile 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.1'
 	compile 'javax.servlet:jstl:1.2'
+
+	compile 'org.postgresql:postgresql'
 }
