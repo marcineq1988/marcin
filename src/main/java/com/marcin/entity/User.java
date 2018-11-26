@@ -9,7 +9,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private long id;
+    private int id;
 
     @Column(name = "login")
     private String login;
@@ -42,15 +42,29 @@ public class User {
     private String phoneNumber;
 
 
-    public User(String login) {
-        this.login = login;
+
+    public User(){
     }
 
-    public long getId() {
+    public User(int id, String login, String password, String name, String surname, String city, String postCode, String street, int houseNumber, int flatNumber, String phoneNumber) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.city = city;
+        this.postCode = postCode;
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.flatNumber = flatNumber;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

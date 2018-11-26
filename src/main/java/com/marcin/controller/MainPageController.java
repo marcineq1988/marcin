@@ -1,7 +1,6 @@
 package com.marcin.controller;
 
 import com.marcin.entity.User;
-import com.marcin.entity.User2;
 import com.marcin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,19 +14,35 @@ import java.util.List;
 public class MainPageController {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @GetMapping("/")
     public String sayHello(Model model) {
 
-        System.out.println("testujemy");
-
-        User user = userRepository.findUserByName("Marcin");
-        //System.out.println(user.getCity());
-
         List<String> listaRandomowychStringow = Arrays.asList("Marcin", "Emilia", "Krzysztof", "Eustachy");
 
-        model.addAttribute("name", "Marcin");
+
+        User newUser = new User(
+                3,
+                "xyz123login",
+                "haslo",
+                "Edmund",
+                "Konopka",
+                "Wroclaw",
+                "50-545",
+                "Kolejowa",
+                32,
+                22,
+                "654335337");
+
+        userRepository.save(newUser);
+
+        List<User> listofusers = userRepository.findByLogin("xyz123login");
+        System.out.println(listofusers.size());
+        System.out.println(listofusers.get(0).getCity());
+
+
+       // model.addAttribute("name", user.getName());
         model.addAttribute("names", listaRandomowychStringow);
 
         return "index";
@@ -36,13 +51,20 @@ public class MainPageController {
     @GetMapping("toLoginPage")
     public String goToLoginPage(Model model) {
 
-        User2 user = new User2("marcineq1988", "haslo",
-                "Marcin", "Pikula", "Wroclaw", "59-800", "Kamienna",
-                115, 27, "687443222");
+        /*User newUser = new User(
+                3,
+                "xyz123login",
+                "haslo",
+                "Edmund",
+                "Konopka",
+                "Wroclaw",
+                "50-545",
+                "Kolejowa",
+                32,
+                22,
+                "654335337");*/
 
-        //User2 user = new User2();
-
-        model.addAttribute("user", user);
+        //model.addAttribute("user", newUser);
 
         return "login";
     }
