@@ -16,7 +16,8 @@
         <li style="display:inline; background-color: blanchedalmond"> Cos innego</li>
         <li style="display:inline; background-color: beige"> Cos jeszcze innego</li>
         <li style="display:inline; background-color: blanchedalmond"> Kontakt</li>
-        <li style="display:inline; background-color: blanchedalmond"> <a href="toLoginPage">Logowanie/rejestracja</a></li>
+        <%--<li style="display:inline; background-color: blanchedalmond"> <a href="toLoginPage">Logowanie/rejestracja</a></li>--%>
+        <li style="display:inline; background-color: blanchedalmond"> <a href="toUserAccount">Konto uzytkownika ${login}</a></li>
     </ul>
 </header>
 

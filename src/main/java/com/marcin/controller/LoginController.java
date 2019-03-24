@@ -5,6 +5,7 @@ import com.marcin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +15,24 @@ public class LoginController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("loginUser")
+    @GetMapping("toUserAccount")
+    public String toLoginAccount() {
+
+        return "userAccount";
+    }
+
+    @GetMapping("login")
+    public String login(Model model) {
+
+        User user = new User();
+
+        model.addAttribute("user", user);
+
+        return "login";
+    }
+
+
+    @PostMapping("login")
     public String loginToUserAccount(@RequestParam("login") String login,
                                      @RequestParam("password") String password, Model model) {
 
@@ -25,27 +43,12 @@ public class LoginController {
 
         model.addAttribute("user", loggedUser);
 
-        //to ma być zastąpione getem z bazy danych
-
-       /* User newUser = new User(
-                4,
-                "cwaniak123",
-                "haslo",
-                "Adam",
-                "Nowak",
-                "Wroclaw",
-                "50-545",
-                "Kolejowa",
-                22,
-                12,
-                "765556554");*/
-
         return "userAccount";
     }
 
     @PostMapping("registerUser")
     public String registerUserAndLoginToUserAccount(@RequestParam("registerLogin") String login,
-                                     @RequestParam("registerPassword") String password, Model model) {
+                                                    @RequestParam("registerPassword") String password, Model model) {
 
         model.addAttribute("registrationSuccess", true);
         model.addAttribute("login", login);

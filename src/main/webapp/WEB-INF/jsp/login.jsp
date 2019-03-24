@@ -16,7 +16,8 @@
         <li style="display:inline; background-color: blanchedalmond"> Cos innego</li>
         <li style="display:inline; background-color: beige"> Cos jeszcze innego</li>
         <li style="display:inline; background-color: blanchedalmond"> Kontakt</li>
-        <li style="display:inline; background-color: blanchedalmond"> <a href="toRegisterPage">Logowanie/rejestracja</a></li>
+        <%--<li style="display:inline; background-color: blanchedalmond"> <a href="toRegisterPage">Logowanie/rejestracja</a></li>--%>
+        <li style="display:inline; background-color: blanchedalmond"> <a href="toUserAccount">Konto uzytkownika ${login}</a></li>
     </ul>
 </header>
 
@@ -25,8 +26,7 @@
     <div style="float: left;">
     <h1>Formularz logowania uzytkownika:</h1>
 
-
-    <form:form id="loginForm" modelAttribute="user" action="loginUser" method="post">
+    <form:form id="loginForm" modelAttribute="user" action="login" method="post">
         <table>
             <tr>
                 <td><form:label path="login">Login:</form:label></td>
