@@ -38,8 +38,6 @@ public class MainPageController {
         userRepository.save(newUser);
 
         List<User> listofusers = userRepository.findByLogin("xyz123login");
-        System.out.println(listofusers.size());
-        System.out.println(listofusers.get(0).getCity());
 
 
        // model.addAttribute("name", user.getName());
@@ -51,7 +49,7 @@ public class MainPageController {
     @GetMapping("toLoginPage")
     public String goToLoginPage(Model model) {
 
-        /*User newUser = new User(
+        User newUser = new User(
                 3,
                 "xyz123login",
                 "haslo",
@@ -62,9 +60,9 @@ public class MainPageController {
                 "Kolejowa",
                 32,
                 22,
-                "654335337");*/
+                "654335337");
 
-        //model.addAttribute("user", newUser);
+        model.addAttribute("user", newUser);
 
         return "login";
     }
