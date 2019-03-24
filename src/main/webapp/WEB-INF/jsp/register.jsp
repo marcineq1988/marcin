@@ -23,10 +23,10 @@
 <div class="container">
 
     <div style="float: left;">
-    <h1>Formularz logowania uzytkownika:</h1>
+    <h1>Formularz rejestracji uzytkownika:</h1>
 
 
-    <form:form id="loginForm" modelAttribute="user" action="loginUser" method="post">
+    <form:form id="registerForm" modelAttribute="user" action="registerUser" method="post">
         <table>
             <tr>
                 <td><form:label path="login">Login:</form:label></td>
@@ -37,7 +37,11 @@
                 <td><form:input path="password"/></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Zaloguj sie"/></td>
+                <td><form:label path="passwordRepeat">Powtórz hasło:</form:label></td>
+                <td><form:input path="passwordRepeat"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Zarejestruj sie"/></td>
             </tr>
         </table>
     </form:form>
