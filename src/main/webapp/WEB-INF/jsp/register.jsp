@@ -34,13 +34,45 @@
             </tr>
             <tr>
                 <td><form:label path="password">Haslo:</form:label></td>
-                <td><form:input path="password"/></td>
+                <td><form:password path="password"/></td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td><form:label path="passwordRepeat">Powtórz hasło:</form:label></td>
                 <td><form:input path="passwordRepeat"/></td>
+            </tr>--%>
+            <tr>
+            <tr>
+                <td><form:label path="name">Imie:</form:label></td>
+                <td><form:input path="name"/></td>
             </tr>
             <tr>
+                <td><form:label path="surname">NAzwisko:</form:label></td>
+                <td><form:input path="surname"/></td>
+            </tr>
+            <tr>
+                <td><form:label path="city">Miasto:</form:label></td>
+                <td><form:input path="city"/></td>
+            </tr>
+            <tr>
+                <td><form:label path="postCode">Kod pocztowy:</form:label></td>
+                <td><form:input path="postCode"/></td>
+            </tr>
+            <tr>
+                <td><form:label path="street">Ulica:</form:label></td>
+                <td><form:input path="street"/></td>
+            </tr>
+            <tr>
+                <td><form:label path="houseNumber">Nr domu:</form:label></td>
+                <td><form:input path="houseNumber"/></td>
+            </tr>
+            <tr>
+                <td><form:label path="flatNumber">Nr mieszkania:</form:label></td>
+                <td><form:input path="flatNumber"/></td>
+            </tr>
+            <tr>
+                <td><form:label path="phoneNumber">Nr telefonu:</form:label></td>
+                <td><form:input path="phoneNumber"/></td>
+            </tr>
                 <td><input type="submit" value="Zarejestruj sie"/></td>
             </tr>
         </table>

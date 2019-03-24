@@ -21,23 +21,20 @@ public class MainPageController {
 
         List<String> listaRandomowychStringow = Arrays.asList("Marcin", "Emilia", "Krzysztof", "Eustachy");
 
-
         User newUser = new User(
                 3,
-                "xyz123login",
+                "marcineq1988",
                 "haslo",
-                "Edmund",
-                "Konopka",
+                "Marcin",
+                "Pikula",
                 "Wroclaw",
                 "50-545",
-                "Kolejowa",
-                32,
-                22,
-                "654335337");
+                "Kamienna",
+                115,
+                27,
+                "661249888");
 
         userRepository.save(newUser);
-
-        List<User> listofusers = userRepository.findByLogin("xyz123login");
 
 
        // model.addAttribute("name", user.getName());
@@ -65,5 +62,26 @@ public class MainPageController {
         model.addAttribute("user", newUser);
 
         return "login";
+    }
+
+    @GetMapping("toRegisterPage")
+    public String goToRegisterPage(Model model) {
+
+        User newUser = new User(
+                3,
+                "cwaniak123",
+                "haslo",
+                "Edmund",
+                "Konopka",
+                "Wroclaw",
+                "50-545",
+                "Kolejowa",
+                32,
+                22,
+                "654335337");
+
+        model.addAttribute("user", newUser);
+
+        return "register";
     }
 }

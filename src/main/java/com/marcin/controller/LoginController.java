@@ -21,11 +21,13 @@ public class LoginController {
         model.addAttribute("login", login);
         model.addAttribute("password", password);
 
-        //User loggedUser = userRepository.findByLogin(login);
+        User loggedUser = userRepository.getByLogin(login);
+
+        model.addAttribute("user", loggedUser);
 
         //to ma być zastąpione getem z bazy danych
 
-        User newUser = new User(
+       /* User newUser = new User(
                 4,
                 "cwaniak123",
                 "haslo",
@@ -36,7 +38,7 @@ public class LoginController {
                 "Kolejowa",
                 22,
                 12,
-                "765556554");
+                "765556554");*/
 
         return "userAccount";
     }

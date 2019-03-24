@@ -33,6 +33,7 @@
         <li style="display:inline; background-color: beige"> Cos jeszcze innego</li>
         <li style="display:inline; background-color: blanchedalmond"> Kontakt</li>
         <li style="display:inline; background-color: blanchedalmond"> <a href="toLoginPage">Logowanie/rejestracja</a></li>
+        <li style="display:inline; background-color: blanchedalmond"> <a href="toLoginPage">Konto uzytkownika ${login}</a></li>
     </ul>
 </header>
 
@@ -57,14 +58,14 @@
             </tr>
             <tr>
                 <td><form:label path="password">Haslo:</form:label></td>
-                <td><form:input path="password"/></td>
+                <td><form:password path="password"/></td>
             </tr>
             <tr>
                 <td><form:label path="name">Imie:</form:label></td>
                 <td><form:input path="name"/></td>
             </tr>
             <tr>
-                <td><form:label path="surname">NAzwisko:</form:label></td>
+                <td><form:label path="surname">Nazwisko:</form:label></td>
                 <td><form:input path="surname"/></td>
             </tr>
             <tr>

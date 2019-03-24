@@ -16,7 +16,7 @@
         <li style="display:inline; background-color: blanchedalmond"> Cos innego</li>
         <li style="display:inline; background-color: beige"> Cos jeszcze innego</li>
         <li style="display:inline; background-color: blanchedalmond"> Kontakt</li>
-        <li style="display:inline; background-color: blanchedalmond"> <a href="toLoginPage">Logowanie/rejestracja</a></li>
+        <li style="display:inline; background-color: blanchedalmond"> <a href="toRegisterPage">Logowanie/rejestracja</a></li>
     </ul>
 </header>
 
@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td><form:label path="password">Haslo:</form:label></td>
-                <td><form:input path="password"/></td>
+                <td><form:password path="password"/></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Zaloguj sie"/></td>
