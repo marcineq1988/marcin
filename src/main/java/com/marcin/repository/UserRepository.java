@@ -9,7 +9,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findByLogin(String login);
 
-    List<User> findUserByLogin(String login);
+    User findUserByLogin(String login);
 
     User getByLogin(String login);
 }

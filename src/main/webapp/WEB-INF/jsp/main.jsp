@@ -42,6 +42,9 @@
             background: aqua;
             border: 1px solid blue;
         }
+        table {
+            border: 1px solid black
+        }
     </style>
 
 
@@ -59,8 +62,26 @@
 </section>
 </body>
 
-    Konto uzytkownika
+    Strona glowna
 
-    <div>${loginMessage}</div>
+<br>
+<br>
+<h1>Lista zarejestrowanych uzytkownikow:</h1>
+<table>
+    <tr>
+        <td>Lp.</td>
+        <td>Imie</td>
+        <td>Nazwisko</td>
+        <td>Login</td>
+    </tr>
 
+    <c:forEach items="${users}" var="user">
+        <tr>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.surname}</td>
+            <td>${user.login}</td>
+        </tr>
+    </c:forEach>
+</table>
 </html>

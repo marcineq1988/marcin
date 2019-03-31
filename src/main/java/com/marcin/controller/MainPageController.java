@@ -7,22 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Controller
 public class MainPageController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @GetMapping("/")
-    public String sayHello(Model model) {
+    public String listView(Model model) {
 
-        List<String> listaRandomowychStringow = Arrays.asList("Marcin", "Emilia", "Krzysztof", "Eustachy");
-
-        User newUser = new User(
-                3,
+        User user = new User(
                 "marcineq1988",
                 "haslo",
                 "Marcin",
@@ -32,56 +26,16 @@ public class MainPageController {
                 "Kamienna",
                 115,
                 27,
-                "661249888");
+                "661249888"
+        );
 
-        userRepository.save(newUser);
+        if (userRepository.findByLogin(user.getLogin()).size() < 1) {
 
+            userRepository.save(user);
+        }
 
-       // model.addAttribute("name", user.getName());
-        model.addAttribute("names", listaRandomowychStringow);
+        model.addAttribute("users", userRepository.findAll());
 
-        return "index";
-    }
-
-    @GetMapping("toLoginPage")
-    public String goToLoginPage(Model model) {
-
-        User newUser = new User(
-                3,
-                "xyz123login",
-                "haslo",
-                "Edmund",
-                "Konopka",
-                "Wroclaw",
-                "50-545",
-                "Kolejowa",
-                32,
-                22,
-                "654335337");
-
-        model.addAttribute("user", newUser);
-
-        return "login";
-    }
-
-    @GetMapping("toRegisterPage")
-    public String goToRegisterPage(Model model) {
-
-        User newUser = new User(
-                3,
-                "cwaniak123",
-                "haslo",
-                "Edmund",
-                "Konopka",
-                "Wroclaw",
-                "50-545",
-                "Kolejowa",
-                32,
-                22,
-                "654335337");
-
-        model.addAttribute("user", newUser);
-
-        return "register";
+        return "main";
     }
 }

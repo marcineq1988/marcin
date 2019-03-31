@@ -1,76 +1,78 @@
-<html>
-<head>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-    <%@ page isELIgnored="false" %>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webapp/css/main.css" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-    <link type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Menu poziome</title>
+
+
+    <style type="text/css">
+        ul {
+            float: left;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        li a {
+            display: block;
+            float: left;
+            text-align: center;
+            font-size: 1.2em;
+            width: 250px;
+            text-decoration: none;
+            color: aqua;
+            background-color: blue;
+            padding: 10px 15px;
+            margin: 0px 1px 1px 0px;
+            border: 1px solid navy;
+            border-radius: 3px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            box-shadow: 0px 2px 3px gray;
+            -moz-box-shadow: 0px 2px 3px gray;
+            -webkit-box-shadow: 0px 2px 3px gray;
+        }
+
+        li a:hover {
+            color: blue;
+            background: aqua;
+            border: 1px solid blue;
+        }
+    </style>
+
 
 </head>
+
 <body>
+<section>
+    <nav>
+        <ul>
+            <li><a href="/">Strona glowna</a></li>
+            <li><a href="#">Kontakt</a></li>
+            <li><a href="/login">Logowanie</a></li>
+            <li><a href="/userAccount">Konto uzytkownika</a></li>
+    </nav>
+</section>
+</body>
 
-<header style="border: #0000FF 1px solid">
-    <ul style="list-style: none">
-        <li style="display:inline; background-color: beige"> <a href="/">Strona glowna</a></li>
-        <li style="display:inline; background-color: blanchedalmond"> Cos innego</li>
-        <li style="display:inline; background-color: beige"> Cos jeszcze innego</li>
-        <li style="display:inline; background-color: blanchedalmond"> Kontakt</li>
-        <%--<li style="display:inline; background-color: blanchedalmond"> <a href="toRegisterPage">Logowanie/rejestracja</a></li>--%>
-        <li style="display:inline; background-color: blanchedalmond"> <a href="toUserAccount">Konto uzytkownika ${login}</a></li>
-    </ul>
-</header>
+    Zaloguj sie
 
-<div class="container">
+<form method="POST" action="/userAccount">
+    <h2 class="form-heading">Logowanie uzytkownika</h2>
 
-    <div style="float: left;">
-    <h1>Formularz logowania uzytkownika:</h1>
+    <div>
+        <input name="login" type="text" placeholder="Login" autofocus="true"/>
+        <input name="password" type="password" placeholder="Haslo"/>
 
-    <form:form id="loginForm" modelAttribute="user" action="login" method="post">
-        <table>
-            <tr>
-                <td><form:label path="login">Login:</form:label></td>
-                <td><form:input path="login"/></td>
-            </tr>
-            <tr>
-                <td><form:label path="password">Haslo:</form:label></td>
-                <td><form:password path="password"/></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Zaloguj sie"/></td>
-            </tr>
-        </table>
-    </form:form>
+        <button type="submit">Zaloguj sie</button>
     </div>
 
+    <div>${loginMessage}</div>
 
-    <div style="float:left">
-    <%--<h2>Formularz rejestracji nowego uzytkownika:</h2>
-
-
-    <form:form id="registerForm" modelAttribute="user" action="registerUser" method="post">
-        <table>
-            <tr>
-                <td><form:label path="registerLogin">Login:</form:label></td>
-                <td><form:input path="registerLogin"/></td>
-            </tr>
-            <tr>
-                <td><form:label path="registerPassword">Haslo:</form:label></td>
-                <td><form:input path="registerPassword"/></td>
-            </tr>
-            <tr>
-                <td><form:label path="registerRepeatPassword">Powtorz haslo:</form:label></td>
-                <td><form:input path="registerRepeatPassword"/></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Zarejestruj sie"/></td>
-            </tr>
-        </table>
-    </form:form>
-    </div>--%>
-
-</div>
-
-</body>
+</form>
 
 </html>

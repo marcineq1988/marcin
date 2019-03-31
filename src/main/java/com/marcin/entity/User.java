@@ -43,13 +43,11 @@ public class User {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-
-
     public User(){
     }
 
-    public User(int id, String login, String password, String name, String surname, String city, String postCode, String street, int houseNumber, int flatNumber, String phoneNumber) {
-        this.id = id;
+    public User(String login, String password, String name, String surname, String city,
+                String postCode, String street, int houseNumber, int flatNumber, String phoneNumber) {
         this.login = login;
         this.password = password;
         this.name = name;
