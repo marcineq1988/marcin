@@ -71,7 +71,7 @@
         <button type="submit">Zaloguj sie</button>
     </div>
 
-    <div>${loginMessage}</div>
+    <div style="color: #FF0000">${loginMessage}</div>
 
 </form>
 

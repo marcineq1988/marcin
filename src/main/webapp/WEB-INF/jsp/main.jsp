@@ -47,6 +47,34 @@
         }
     </style>
 
+    <script type="text/javascript"
+            src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script type="text/javascript">
+        function crunchifyAjax() {
+            $.ajax({
+                url : 'ajaxtest.html',
+                success : function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+        function alertFunction() {
+            $.ajax({
+                url : 'ajaxtest.html',
+                success : function(data) {
+                    alert("O kurde, dziala! - losowy tekst:" + data)
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        var intervalId = 0;
+        intervalId = setInterval(crunchifyAjax, 1000);
+    </script>
+
 
 </head>
 
@@ -58,6 +86,7 @@
             <li><a href="#">Kontakt</a></li>
             <li><a href="/login">Logowanie</a></li>
             <li><a href="/userAccount">Konto uzytkownika</a></li>
+        </ul>
     </nav>
 </section>
 </body>
@@ -73,6 +102,7 @@
         <td>Imie</td>
         <td>Nazwisko</td>
         <td>Login</td>
+        <td>Haslo</td>
     </tr>
 
     <c:forEach items="${users}" var="user">
@@ -81,7 +111,46 @@
             <td>${user.name}</td>
             <td>${user.surname}</td>
             <td>${user.login}</td>
+            <td>${user.password}</td>
         </tr>
     </c:forEach>
 </table>
+
+Losowo generowany int:
+
+
+<button type="button" onclick="alertFunction()">Click Me!</button>
+
+<h3 id="testowy">Jakis tekst... </h3>
+
+<form id="sampleForm" method="post" action="/profile">
+
+
+    <div>
+        <input type="text" name="firstname" id="firstname">
+    </div>
+
+    <div>
+        <input type="text" name="lastname" id="lastname">
+    </div>
+
+    <div>
+        <button type="submit" name="submit">Submit</button>
+    </div>
+
+
+</form>
+
+
+
+
+<div align="center">
+    <br> <br> ${message} <br> <br>
+    <div id="result"></div>
+    <br>
+</div>
+
+
+
+
 </html>

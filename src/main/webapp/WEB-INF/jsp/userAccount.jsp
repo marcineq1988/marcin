@@ -59,8 +59,46 @@
 </section>
 </body>
 
-    Konto uzytkownika
+    <h1>Konto uzytkownika</h1>
 
-    <div>${loginMessage}</div>
+    <div style="color: green;">${loginMessage}</div>
+
+    <form method="POST" action="/saveEditedUserData">
+        <table>
+            <tr>
+                <td>Imie:</td><td><input name="name" type="text" value="${loggedUser.name}"/></td>
+            </tr>
+            <tr>
+                <td>Nazwisko:</td><td><input name="surname" type="text" value="${loggedUser.surname}"/></td>
+            </tr>
+            <tr>
+                <td>Login:</td><td><input name="login" type="text" value="${loggedUser.login}"/></td>
+            </tr>
+            <tr>
+                <td>Haslo:</td><td><input name="password" type="text" value="${loggedUser.password}"/></td>
+            </tr>
+            <tr>
+                <td>Miasto:</td><td><input name="city" type="text" value="${loggedUser.city}"/></td>
+            </tr>
+            <tr>
+                <td>Kod:</td><td><input name="postCode" type="text" value="${loggedUser.postCode}"/></td>
+            </tr>
+            <tr>
+                <td>Ulica:</td><td><input name="street" type="text" value="${loggedUser.street}"/></td>
+            </tr>
+            <tr>
+                <td>Nr domu:</td><td><input name="houseNumber" type="text" value="${loggedUser.houseNumber}"/></td>
+            </tr>
+            <tr>
+                <td>Nr mieszkania:</td><td><input name="flatNumber" type="text" value="${loggedUser.flatNumber}"/></td>
+            </tr>
+            <tr>
+                <td>Telefon:</td><td><input name="phoneNumber" type="text" value="${loggedUser.phoneNumber}"/></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Zapisz edytowane dane</button></td>
+            </tr>
+        </table>
+    </form>
 
 </html>

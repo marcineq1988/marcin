@@ -5,11 +5,12 @@ import com.marcin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
 
 @Controller
 public class UserAccountController {
@@ -34,10 +35,9 @@ public class UserAccountController {
     }
 
     @PostMapping("userAccount")
-    public String userAccountPostView(@RequestParam("login") String login,
-                                      @RequestParam("password") String password, Model model) {
+    public String userAccountPostView(@ModelAttribute("user") User user, Model model) {
 
-        List<User> users = userRepository.findByLogin(login);
+        List<User> users = userRepository.findByLogin(user.getLogin());
 
         if (users.size() == 0) {
 
@@ -48,23 +48,50 @@ public class UserAccountController {
 
         if (users.size() == 1) {
 
-            if (!password.equals(users.get(0).getPassword())) {
+            if (!user.getPassword().equals(users.get(0).getPassword())) {
 
                 model.addAttribute("loginMessage", WRONG_PASSWORD);
 
                 return "login";
             }
 
-            if (password.equals(users.get(0).getPassword())) {
+            if (user.getPassword().equals(users.get(0).getPassword())) {
 
                 model.addAttribute("loginMessage", LOGIN_SUCCESS);
+                model.addAttribute("loggedUser", users.get(0));
 
                 return "userAccount";
             }
-
-            return "userAccount";
         }
 
         return "login";
     }
+
+    @PostMapping("saveEditedUserData")
+    public String saveEditedUSerData(@ModelAttribute("user") User loggedUser, Model model) {
+
+        User user = userRepository.findUserByLogin(loggedUser.getLogin());
+
+        userRepository.save(user);
+
+        model.addAttribute("loggedUser",loggedUser);
+
+        return "userAccount";
+    }
+
+    @GetMapping(value = "/ajaxtest")
+    public @ResponseBody
+    String getTime() {
+
+        List<String> someListWithRandomText = new ArrayList<>();
+
+        someListWithRandomText.add("Kocham");
+        someListWithRandomText.add("moja");
+        someListWithRandomText.add("zone");
+        someListWithRandomText.add("Emilke");
+
+        Random rand = new Random();
+        return String.valueOf(someListWithRandomText.get(rand.nextInt((3 - 0) + 1) + 0));
+    }
 }
+
