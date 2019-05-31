@@ -68,13 +68,25 @@
                 }
             });
         }
+
+        function getCurrentHour() {
+            $.ajax({
+                url : 'currentHour.html',
+                success : function(data) {
+                    $('#currentHour').html(data);
+                }
+            });
+        }
     </script>
 
+
     <script type="text/javascript">
-        var intervalId = 0;
         intervalId = setInterval(crunchifyAjax, 1000);
     </script>
 
+    <script type="text/javascript">
+        intervalId2 = setInterval(getCurrentHour, 1000);
+    </script>
 
 </head>
 
@@ -116,15 +128,11 @@
     </c:forEach>
 </table>
 
-Losowo generowany int:
-
-
 <button type="button" onclick="alertFunction()">Click Me!</button>
 
 <h3 id="testowy">Jakis tekst... </h3>
 
 <form id="sampleForm" method="post" action="/profile">
-
 
     <div>
         <input type="text" name="firstname" id="firstname">
@@ -138,19 +146,16 @@ Losowo generowany int:
         <button type="submit" name="submit">Submit</button>
     </div>
 
-
 </form>
 
+    <div align="center">
+        <div id="result"></div>
+        <br>
+    </div>
 
-
-
-<div align="center">
-    <br> <br> ${message} <br> <br>
-    <div id="result"></div>
-    <br>
-</div>
-
-
-
+    <div align="center">
+        <div id="currentHour">AKTUALNA GODZINA</div>
+        <br>
+    </div>
 
 </html>

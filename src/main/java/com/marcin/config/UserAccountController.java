@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -80,18 +78,31 @@ public class UserAccountController {
     }
 
     @GetMapping(value = "/ajaxtest")
-    public @ResponseBody
-    String getTime() {
+    @ResponseBody
+    public String getTime() {
 
         List<String> someListWithRandomText = new ArrayList<>();
 
-        someListWithRandomText.add("Kocham");
-        someListWithRandomText.add("moja");
-        someListWithRandomText.add("zone");
-        someListWithRandomText.add("Emilke");
+        someListWithRandomText.add("pierwszy");
+        someListWithRandomText.add("drugi");
+        someListWithRandomText.add("trzeci");
+        someListWithRandomText.add("czwarty");
 
         Random rand = new Random();
         return String.valueOf(someListWithRandomText.get(rand.nextInt((3 - 0) + 1) + 0));
+    }
+
+    @GetMapping(value = "/currentHour")
+    @ResponseBody
+    public String getHour() {
+
+
+        LocalDateTime now = LocalDateTime.now();
+        int hour = now.getHour();
+        int minutes = now.getMinute();
+        int seconds = now.getSecond();
+
+        return "Aktualna godzina: " + hour + ":" + minutes + ":" + seconds;
     }
 }
 
