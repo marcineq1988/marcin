@@ -1,7 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<!DOCTYPE html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 
 <head>
@@ -47,7 +44,9 @@
 
 </head>
 
-<body>
+
+<body onload='document.loginForm.username.focus();'>
+
 <section>
     <nav>
         <ul>
@@ -55,24 +54,29 @@
             <li><a href="#">Kontakt</a></li>
             <li><a href="/login">Logowanie</a></li>
             <li><a href="/userAccount">Konto uzytkownika</a></li>
+        </ul>
     </nav>
 </section>
-</body>
 
-    Zaloguj sie
 
-<form method="POST" action="/userAccount">
-    <h2 class="form-heading">Logowanie uzytkownika</h2>
 
-    <div>
-        <input name="login" type="text" placeholder="Login" autofocus="true"/>
-        <input name="password" type="password" placeholder="Haslo"/>
+<c:if test="${not empty errorMessge}"><div style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessge}</div></c:if>
 
-        <button type="submit">Zaloguj sie</button>
-    </div>
-
-    <div style="color: #FF0000">${loginMessage}</div>
-
+<form name='login' action="/login" method='POST'>
+    <table>
+        <tr>
+            <td>UserName:</td>
+            <td><input type='text' name='username' value=''></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type='password' name='password' /></td>
+        </tr>
+        <tr>
+            <td colspan='2'><input name="submit" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
-
+</body>
 </html>

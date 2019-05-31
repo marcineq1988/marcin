@@ -55,11 +55,14 @@
             <li><a href="#">Kontakt</a></li>
             <li><a href="/login">Logowanie</a></li>
             <li><a href="/userAccount">Konto uzytkownika</a></li>
+        </ul>
     </nav>
 </section>
-</body>
+
 
     <h1>Konto uzytkownika</h1>
+
+    <a href="<c:url value="/logout" />">Logout</a>
 
     <div style="color: green;">${loginMessage}</div>
 
@@ -100,5 +103,7 @@
             </tr>
         </table>
     </form>
+
+</body>
 
 </html>

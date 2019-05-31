@@ -96,7 +96,7 @@
         <ul>
             <li><a href="/">Strona glowna</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="/login">Logowanie</a></li>
+            <li><a href="/log">Logowanie</a></li>
             <li><a href="/userAccount">Konto uzytkownika</a></li>
         </ul>
     </nav>
@@ -131,22 +131,6 @@
 <button type="button" onclick="alertFunction()">Click Me!</button>
 
 <h3 id="testowy">Jakis tekst... </h3>
-
-<form id="sampleForm" method="post" action="/profile">
-
-    <div>
-        <input type="text" name="firstname" id="firstname">
-    </div>
-
-    <div>
-        <input type="text" name="lastname" id="lastname">
-    </div>
-
-    <div>
-        <button type="submit" name="submit">Submit</button>
-    </div>
-
-</form>
 
     <div align="center">
         <div id="result"></div>
