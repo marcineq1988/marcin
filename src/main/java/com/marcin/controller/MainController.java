@@ -3,23 +3,43 @@ package com.marcin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.marcin.entity.User;
+import com.marcin.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class MainController {
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("/")
-    public String getMainPage() {
+    public String getMainPage(Model model) {
+
+        User user = new User(
+                1,
+                "admin",
+                "admin",
+                true
+
+        );
+
+        if (userRepository.findByUsername(user.getUsername()).size() < 1) {
+
+            userRepository.save(user);
+        }
+
+        model.addAttribute("users", userRepository.findAll());
 
         return "main";
     }
@@ -34,7 +54,23 @@ public class MainController {
     public String loginPage(@RequestParam(value = "error", required = false) String error,
                             @RequestParam(value = "logout", required = false) String logout,
                             Model model) {
+
+        System.out.println("Haslo:");
+
+        int i = 0;
+        while (i < 10) {
+            String password = "admin";
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String hashedPassword = passwordEncoder.encode(password);
+
+
+
+            System.out.println(hashedPassword);
+            i++;
+        }
+
         String errorMessge = null;
+
         if(error != null) {
             errorMessge = "Username or Password is incorrect!";
         }
@@ -42,6 +78,7 @@ public class MainController {
             errorMessge = "You have been successfully logged out!";
         }
         model.addAttribute("errorMessge", errorMessge);
+
         return "login";
     }
   
@@ -85,9 +122,9 @@ public class MainController {
     /*
 
     @PostMapping("userAccount")
-    public String userAccountPostView(@ModelAttribute("user") User user, Model model) {
+    public String userAccountPostView(@ModelAttribute("user") UserTest user, Model model) {
 
-        List<User> users = userRepository.findByLogin(user.getLogin());
+        List<UserTest> users = userRepository.findByLogin(user.getLogin());
 
         if (users.size() == 0) {
 
@@ -118,9 +155,9 @@ public class MainController {
     }
 
     @PostMapping("saveEditedUserData")
-    public String saveEditedUSerData(@ModelAttribute("user") User loggedUser, Model model) {
+    public String saveEditedUSerData(@ModelAttribute("user") UserTest loggedUser, Model model) {
 
-        User user = userRepository.findUserByLogin(loggedUser.getLogin());
+        UserTest user = userRepository.findUserByLogin(loggedUser.getLogin());
 
         userRepository.save(user);
 

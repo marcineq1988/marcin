@@ -111,19 +111,17 @@
 <table>
     <tr>
         <td>Lp.</td>
-        <td>Imie</td>
-        <td>Nazwisko</td>
         <td>Login</td>
         <td>Haslo</td>
+        <td>Enabled</td>
     </tr>
 
     <c:forEach items="${users}" var="user">
         <tr>
             <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.surname}</td>
-            <td>${user.login}</td>
+            <td>${user.username}</td>
             <td>${user.password}</td>
+            <td>${user.enabled}</td>
         </tr>
     </c:forEach>
 </table>

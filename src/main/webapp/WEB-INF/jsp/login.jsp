@@ -45,7 +45,6 @@
 </head>
 
 
-<body onload='document.loginForm.username.focus();'>
 
 <section>
     <nav>
@@ -65,7 +64,7 @@
 <form name='login' action="/login" method='POST'>
     <table>
         <tr>
-            <td>UserName:</td>
+            <td>Username:</td>
             <td><input type='text' name='username' value=''></td>
         </tr>
         <tr>
