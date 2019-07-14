@@ -140,4 +140,30 @@
         <br>
     </div>
 
+
+<h2>Lista wydarzen z biezacego miesiaca</h2>
+<table>
+    <tr>
+        <td>Lp.</td>
+        <td>Data</td>
+        <td>Tytul</td>
+        <td>Komentarz</td>
+    </tr>
+
+    <c:forEach items="${events}" var="event">
+        <tr>
+            <td>${index}</td>
+            <td>${event.eventDate}</td>
+            <td>${event.title}</td>
+            <td>${event.content}</td>
+        </tr>
+    </c:forEach>
+</table>
+
+
+
+
+
+    </table>
+
 </html>

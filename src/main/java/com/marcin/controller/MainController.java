@@ -3,7 +3,9 @@ package com.marcin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.marcin.entity.Event;
 import com.marcin.entity.User;
+import com.marcin.repository.EventRepository;
 import com.marcin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,7 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.*;
 
 @Controller
@@ -22,6 +26,9 @@ public class MainController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    EventRepository eventRepository;
 
     @GetMapping("/")
     public String getMainPage(Model model) {
@@ -31,7 +38,6 @@ public class MainController {
                 "admin",
                 "admin",
                 true
-
         );
 
         if (userRepository.findByUsername(user.getUsername()).size() < 1) {
@@ -39,7 +45,27 @@ public class MainController {
             userRepository.save(user);
         }
 
+        Calendar calendar = Calendar.getInstance();
+
+        LocalDateTime now = LocalDateTime.now();
+        int currentMonth = now.getMonth().getValue();
+        int firstDayOfTheMonth = 1;
+        int lastDayOfTheMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        int currentYear = now.getYear();
+
+        LocalDate dateFrom = LocalDate.of(currentYear, Month.AUGUST, firstDayOfTheMonth);
+        LocalDate dateTo = LocalDate.of(currentYear, Month.AUGUST, lastDayOfTheMonth);
+
+        List<Event> currentMonthEvents = eventRepository.findByEventDateBetween(dateFrom, dateTo);
+
+        model.addAttribute("events", currentMonthEvents);
         model.addAttribute("users", userRepository.findAll());
+
+
+
+
+
+        //model.addAttribute()
 
         return "main";
     }
@@ -63,8 +89,6 @@ public class MainController {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String hashedPassword = passwordEncoder.encode(password);
 
-
-
             System.out.println(hashedPassword);
             i++;
         }
@@ -74,9 +98,11 @@ public class MainController {
         if(error != null) {
             errorMessge = "Username or Password is incorrect!";
         }
+
         if(logout != null) {
             errorMessge = "You have been successfully logged out!";
         }
+
         model.addAttribute("errorMessge", errorMessge);
 
         return "login";
@@ -84,6 +110,7 @@ public class MainController {
   
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){   
             new SecurityContextLogoutHandler().logout(request, response, auth);
@@ -109,7 +136,6 @@ public class MainController {
     @GetMapping(value = "/currentHour")
     @ResponseBody
     public String getHour() {
-
 
         LocalDateTime now = LocalDateTime.now();
         int hour = now.getHour();
